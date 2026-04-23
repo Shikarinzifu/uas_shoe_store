@@ -15,9 +15,11 @@ class CartProvider extends ChangeNotifier {
 
   int get totalPrice {
     int total = 0;
+
     for (var item in cart) {
       total += item["price"] as int;
     }
+
     return total;
   }
 }
