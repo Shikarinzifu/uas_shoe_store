@@ -170,6 +170,14 @@ class _RegisterPageState extends State<RegisterPage> {
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  final List<Map<String, dynamic>> shoes = const [
+    {"name": "Nike Air Max", "price": 1500000},
+    {"name": "Adidas Samba", "price": 1800000},
+    {"name": "Vans Old Skool", "price": 950000},
+    {"name": "Converse Chuck Taylor", "price": 850000},
+    {"name": "Puma Suede", "price": 1200000},
+  ];
+
   Future logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
 
@@ -191,11 +199,30 @@ class HomePage extends StatelessWidget {
           )
         ],
       ),
-      body: const Center(
-        child: Text(
-          "Login Success",
-          style: TextStyle(fontSize: 24),
-        ),
+      body: ListView.builder(
+        itemCount: shoes.length,
+        itemBuilder: (context, index) {
+          final item = shoes[index];
+
+          return Card(
+            margin: const EdgeInsets.all(10),
+            child: ListTile(
+              leading: const Icon(Icons.shopping_bag),
+              title: Text(item["name"]),
+              subtitle: Text("Rp ${item["price"]}"),
+              trailing: ElevatedButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("${item["name"]} added to cart"),
+                    ),
+                  );
+                },
+                child: const Text("Buy"),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
