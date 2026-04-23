@@ -2,9 +2,9 @@
 
 # Identitas Mahasiswa
 
-**Nama:** MHAMMAD ILHAM MAULANA  
-**NIM:** 1123150141  
-**Kelas:** TI 23 SH SE  
+**Nama:** MHAMMAD RAMZY HIDAYAT SIREGAR 
+**NIM:** 1123150076 
+**Kelas:** TI 23 M SE  
 
 ---
 
