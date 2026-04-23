@@ -219,12 +219,15 @@ class HomePage extends StatelessWidget {
               subtitle: Text("Rp ${item["price"]}"),
               trailing: ElevatedButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text("${item["name"]} added to cart"),
-                    ),
-                  );
-                },
+  Provider.of<CartProvider>(context, listen: false)
+      .addItem(item);
+
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text("${item["name"]} added to cart"),
+    ),
+  );
+},
                 child: const Text("Buy"),
               ),
             ),
