@@ -20,6 +20,4 @@ class CartProvider extends ChangeNotifier {
     }
     return total;
   }
-
-  int get totalItem => cart.length;
 }
