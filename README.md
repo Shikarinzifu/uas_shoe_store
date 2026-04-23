@@ -1,6 +1,51 @@
 # uts_shoe_store
 
-A new Flutter project.
+# Identitas Mahasiswa
+
+**Nama:** MHAMMAD ILHAM MAULANA  
+**NIM:** 1123150141  
+**Kelas:** TI 23 SH SE  
+
+---
+
+# 📌 Deskripsi Aplikasi
+
+Shoe Store adalah aplikasi mobile berbasis Flutter yang digunakan sebagai platform toko sepatu sederhana. Aplikasi ini dirancang untuk memenuhi kebutuhan UTS praktikum dengan mengimplementasikan autentikasi, integrasi backend, serta sistem keranjang belanja.
+
+Aplikasi ini memiliki fitur:
+
+- 🔐 Login & Register (Email & Password)
+- 📧 Email Verification (Firebase Authentication)
+- 👟 Manajemen Produk (List sepatu dari backend)
+- 🛒 Keranjang Belanja (Cart System)
+- 💳 Checkout sederhana
+- 🔄 Integrasi Backend menggunakan Node.js (REST API)
+- 🔐 Token Authentication (Firebase → Backend JWT)
+
+---
+
+# 🛠️ Teknologi yang Digunakan
+
+Aplikasi ini menggunakan:
+
+- Flutter (Frontend Mobile / Web)
+- Firebase Authentication
+- Node.js + Express (Backend API)
+- JWT (Token Authentication)
+- HTTP Package (API Client)
+- Provider (State Management)
+
+---
+
+# 📂 Struktur Folder
+
+```text
+lib/
+├── core/
+├── features/
+│   ├── auth/
+│   ├── catalog/
+│   └── cart/
 
 ## Getting Started
 
