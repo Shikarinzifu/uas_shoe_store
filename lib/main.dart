@@ -12,7 +12,12 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MyApp());
+  runApp(
+  ChangeNotifierProvider(
+    create: (_) => CartProvider(),
+    child: const MyApp(),
+  ),
+);
 }
 
 class MyApp extends StatelessWidget {
