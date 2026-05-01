@@ -17,64 +17,66 @@ class _LoginPageState extends State<LoginPage> {
   final password = TextEditingController();
 
   Future login() async {
-  try {
-    final userCredential =
-        await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-      email: email.text.trim(),
-      password: password.text.trim(),
-    );
-
-    final user = userCredential.user;
-
-    if (user != null &&
-        user.emailVerified) {
-
-      final firebaseToken =
-          await user.getIdToken();
-
-      final jwt =
-          await ApiService.loginBackend(
-        firebaseToken!,
-        user.email!,
+    try {
+      // 
+      final userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.text.trim(),
+        password: password.text.trim(),
       );
 
-      if (jwt != null) {
-        final prefs =
-            await SharedPreferences
-                .getInstance();
+      final user = userCredential.user;
 
-        await prefs.setString(
-            "jwt", jwt);
+      // 
+      if (user != null && user.emailVerified) {
 
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) =>
-                const HomePage(),
+        // 
+        final firebaseToken = await user.getIdToken();
+
+        // 
+        final jwt = await ApiService.loginBackend(
+          firebaseToken!,
+          user.email!,
+        );
+
+        // 
+        if (jwt != null) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString("jwt", jwt);
+
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const HomePage(),
+            ),
+          );
+        } else {
+          // 
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Backend login failed"),
+            ),
+          );
+        }
+
+      } else {
+        // 
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Please verify your email first"),
           ),
         );
       }
 
-    } else {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(
-        const SnackBar(
-          content: Text(
-              "Verify email first"),
+    } catch (e) {
+      
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.toString()),
         ),
       );
     }
-  } catch (e) {
-    ScaffoldMessenger.of(context)
-        .showSnackBar(
-      const SnackBar(
-        content:
-            Text("Login Failed"),
-      ),
-    );
   }
-}
 
   @override
   Widget build(BuildContext context) {
@@ -88,14 +90,16 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             TextField(
               controller: email,
-              decoration:
-                  const InputDecoration(labelText: "Email"),
+              decoration: const InputDecoration(
+                labelText: "Email",
+              ),
             ),
             TextField(
               controller: password,
               obscureText: true,
-              decoration:
-                  const InputDecoration(labelText: "Password"),
+              decoration: const InputDecoration(
+                labelText: "Password",
+              ),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -107,8 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) =>
-                        const RegisterPage(),
+                    builder: (_) => const RegisterPage(),
                   ),
                 );
               },
