@@ -12,6 +12,9 @@
 
 Shoe Store adalah aplikasi mobile berbasis Flutter yang digunakan sebagai platform toko sepatu sederhana. Aplikasi ini dirancang untuk memenuhi kebutuhan UTS praktikum dengan mengimplementasikan autentikasi, integrasi backend, serta sistem keranjang belanja.
 
+LINK YOUTUBE
+https://youtu.be/PaKdlHK7le0
+
 Aplikasi ini memiliki fitur:
 
 - 🔐 Login & Register (Email & Password)
